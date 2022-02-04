@@ -1,13 +1,15 @@
 [![CircleCI](https://circleci.com/gh/ocranbillions/mlapi-docker-kubernetes/tree/main.svg?style=svg)](https://circleci.com/gh/ocranbillions/mlapi-docker-kubernetes/tree/main)
 
 
-## Project Overview
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+# Cloud DevOps: Operationalize a Machine Learning API
 
-### Project Tasks
+In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API.
+
+You are given a pre-trained, sklearn model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on the data source site. This project tests your ability to operationalize a Python flask app—in a provided file, app.py—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+
+## Project Tasks
 
 Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
 * Test your project code using linting
@@ -21,8 +23,6 @@ Your project goal is to operationalize this working, machine learning microservi
 You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
 
 **The final implementation of the project will showcase your abilities to operationalize production microservices.**
-
----
 
 ## Setup the Environment
 
@@ -49,3 +49,55 @@ source .devops/bin/activate
 * Setup and Configure Kubernetes locally
 * Create Flask app in Container
 * Run via kubectl
+
+# Implementation
+### Installation Guide
+
+- Docker
+- Virtualbox
+
+For Mac:
+
+```
+brew install --cask virtualbox
+```
+
+- Minikube
+
+```
+brew install --cask minikube
+```
+
+### Files explanation
+- config.yml: CircleCI configuration file for ensuring the code passes lint test
+- app.py: Python flask app that serves out predictions (inference) about housing prices through API calls
+- Dockerfile: Dockerfile for building the image
+- make_prediction.sh: Send a request to the Python flask app to get a prediction
+- Makefile: includes instructions on environment setup and lint tests
+- run_docker.sh: file to be able to get Docker running, locally
+- run_kubernetes.sh: file to run the app in kubernetes
+- upload_docker.sh: file to upload the image to Dockerhub
+
+
+### Run the project
+
+
+1. You should have a virtual machine like VirtualBox and minikube installed, as per the project environmet instructions. To start a local cluster, type the terminal command: 
+```
+minikube start
+```
+
+2. To deploy this application in kubernetes run:
+```
+./run_kubernetes.sh
+```
+
+3. After you’ve called run_kubernetes.sh, and a pod is up and running, make a prediction using a separate terminal tab and run 
+```
+./make_prediction.sh
+```
+
+4. Delete the cluster
+```
+minikube delete
+```

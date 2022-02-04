@@ -1,4 +1,5 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://circleci.com/gh/ocranbillions/mlapi-docker-kubernetes/tree/main.svg?style=svg)](https://circleci.com/gh/ocranbillions/mlapi-docker-kubernetes/tree/main)
+
 
 ## Project Overview
 
